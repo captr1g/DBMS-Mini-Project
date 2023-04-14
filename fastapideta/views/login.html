@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 " />
+    <img src="https://hkbk.edu.in/backend/backend/EngineeringLogoB.png" />
+    <style>
+      img {
+        margin-left: 40%;
+      }
+      .box{
+        background-color: rgb(239, 223, 204);
+        margin-left: 41%;
+        margin-top: 4%;
+        padding-left: 10px;
+        /* margin-right:50%; */
+        width: 20%;
+        border: 1px solid black;
+      }
+      #username{
+        margin-top: 4%;
+        margin-bottom:  4%;
+        margin-left:  4%;
+        /* margin-right: 5%; */
+      }
+      #password{
+        margin-top: 4%;
+        margin-bottom:  4%;
+        margin-left: 4%;
+      }
+      #logintext{
+        margin-left: 25%;
+      }
+      #textname{
+        padding-right:  10px;
+      }
+      #subbutton{
+        margin-left: 40%;
+        margin-top:  10%;
+        margin-bottom: 15%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h3 id = "logintext">Login to Alumni</h3>
+      <form>
+        <label id = " textname" for="username">Username:</label>
+        <input type="text" id="username" name="username" />
+        <br />
+        <label id = " textname" for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        <br />
+        <button id = "subbutton" type="button" onclick="submitForm()">Submit</button>
+        </form>
+      </div>
+    <script>
+      function submitForm() {
+        // Get the values from the form inputs
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Create the data object to be sent to the server
+        var data = {
+          username: username,
+          password: password,
+        };
+
+        // Use the Fetch API to send a POST request to the server
+        fetch("/login", {
+          method: "POST",
+          headers: {
+            accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Save the JWT access token in the local storage
+            localStorage.setItem("access_token", data.access_token);
+            localStorage.setItem("user", data.user);
+            // redirect to home page after successfull login
+            // console.log(data.user);
+            if (data.user === "admin") {
+              window.location.href = "/admin";
+            } else {
+              window.location.href = "/search";
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

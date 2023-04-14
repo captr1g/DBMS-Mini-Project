@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Student Details</title>
+    <img src="https://hkbk.edu.in/backend/backend/EngineeringLogoB.png" />
+    <style>
+      img {
+        margin-left: 40%;
+      }
+      #data-table{
+        border: 1px solid black ;
+        width:  80%;
+      }
+    </style>
+  </head>
+  <body>
+    <body>
+      <table id="data-table">
+        <thead>
+          <tr >
+            <th >USN</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Department </th>
+            <th>Team Name</th>
+            <th>Guide Name</th>
+            <th>Batch</th>
+            <th>Viva</th>
+            <th>Report</th>
+            <th>Project</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in data %}
+            <tr>
+              <td style= "padding-left: 2%; padding-top: 10px;">{{ item.usn }}</td>
+              <td>{{ item.name }}</td>
+              <td style= "padding-left: 1%;">{{ item.year }}</td>
+              <td style= "padding-left: 3%;">{{ item.dept }}</td>
+              <td style= "padding-left: 3%;">{{ item.team_name }}</td>
+              <td style= "padding-left: 3%;">{{ item.guide_name }}</td>
+              <td style= "padding-left: 3%;">{{ item.batch }}</td>
+              <td style= "padding-left: 3%;">{{ item.viva }}</td>
+              <td style= "padding-left: 3%;">{{ item.report }}</td>
+              <td style= "padding-left: 3%;">{{ item.project}}</td>
+              <td style= "padding-left: 2%;">{{ item.total }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    
+  </body>
+</html>

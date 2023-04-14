@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HKBK PROJECT DETAILS</title>
+    <img src="https://hkbk.edu.in/backend/backend/EngineeringLogoB.png" />
+    <style>
+      img {
+        margin-left: 40%;
+      }
+      
+      .form{
+        background-color: rgb(239, 223, 204);
+        margin-left: 41%;
+        margin-top: 4%;
+        padding-left: 10px;
+        /* margin-right:50%; */
+        width: 22%;
+        border: 1px solid black;
+      }
+      .login-header{
+        margin-left: 15%;
+        margin-bottom: 5%;
+      }
+
+      #in_stt{
+        margin-left:  10%;
+        margin-top: 4%;
+        margin-bottom:  4%;
+      }
+      #in_stt1{
+        margin-left:  17%;
+        margin-top: 4%;
+        margin-bottom:  4%;
+      }
+      #year{
+        margin-left:  40%;
+        margin-top: 4%;
+        margin-bottom:  4%;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="form">
+        <div class="login">
+          <div class="login-header">
+            <h1>Alumni Search </h1>
+          </div>
+        </div>
+
+        <div class="Academic_Year">
+          <lable id="stt">Academic Year</lable>
+          <select id="in_stt">
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+          </select>
+        </div>
+
+        <div class="Department">
+          <lable id="stt1">Department</lable>
+          <select id="in_stt1">
+            <option value="CSE">CSE</option>
+            <option value="ISE">ISE</option>
+            <option value="AIML">AIML</option>
+          </select>
+        </div>
+        <button id="year" onclick="search()">ENTER</button>
+      </div>
+    </div>
+    <script>
+      function search() {
+  var year = document.getElementById("in_stt").value;
+  var dept = document.getElementById("in_stt1").value;
+  var user = localStorage.getItem("user");
+  var endpoint = user === "student" ? "/student" : "/teacher";
+  window.location.href = endpoint + "?year=" + year + "&dept=" + dept;
+}
+    </script>
+  </body>
+</html>
